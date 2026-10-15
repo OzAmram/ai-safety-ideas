@@ -292,7 +292,7 @@
     set("sort", state.sort === "new" ? "" : state.sort);
     for (const f of FACETS) set(f.key, [...state[f.key]].join(","));
     const qs = p.toString().replace(/%2C/g, ",");
-    history.replaceState(null, "", `${location.pathname}${qs ? "?" + qs : ""}${location.hash}`);
+    try { history.replaceState(null, "", `${location.pathname}${qs ? "?" + qs : ""}${location.hash}`); } catch {}
   }
 
   // ----------------------------------------------------------------- utils
