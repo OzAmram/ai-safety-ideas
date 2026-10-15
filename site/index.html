@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Problems in AI Safety</title>
+  <meta name="description" content="Research ideas from AI safety researchers that anyone can pick up, with mentorship where offered.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#list">Skip to ideas</a>
+
+  <header class="masthead">
+    <div class="wrap">
+      <h1 id="site-title">Open problems in AI safety</h1>
+      <p class="lede">Research ideas that working researchers would like to see done. Pick one up, and if the poster has highlighted it, they'll help you along.</p>
+      <div class="actions">
+        <a class="btn primary" id="post-link" href="#">Post an idea</a>
+        <button class="btn" type="button" id="how-btn" aria-expanded="false" aria-controls="how">How claiming works</button>
+      </div>
+      <section id="how" class="how" hidden>
+        <ol>
+          <li><strong>Pick an idea</strong> and open it on GitHub.</li>
+          <li><strong>Comment <code>/claim</code></strong> to say you're working on it, or <code>/claim solo</code> if you'd rather not take collaborators. Most ideas allow several people at once; you'll see who else is on it.</li>
+          <li><strong>Renew every 30 days</strong> with <code>/renew</code> plus one line on progress. If you don't reply to the reminder within a week, the claim is released.</li>
+          <li><strong>Finish with <code>/done</code></strong> and a link to your write-up, or <code>/release</code> if you stop. Both help the next person.</li>
+        </ol>
+      </section>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+    <aside class="filters" aria-label="Filters">
+      <label class="search">
+        <span class="visually-hidden">Search ideas</span>
+        <input id="q" type="search" placeholder="Search ideas" autocomplete="off">
+      </label>
+      <button class="btn filters-toggle" type="button" id="filters-toggle" aria-expanded="false" aria-controls="facets">Filters</button>
+      <div id="facets" class="facets"></div>
+    </aside>
+
+    <section class="results" aria-live="polite">
+      <div class="results-head">
+        <p id="count" class="count"></p>
+        <label class="sort">Sort
+          <select id="sort">
+            <option value="new">Newest</option>
+            <option value="active">Recently active</option>
+            <option value="small">Smallest first</option>
+          </select>
+        </label>
+      </div>
+      <p id="sample-note" class="sample-note" hidden>Showing sample ideas for preview. Real ideas appear once the repository has approved idea issues.</p>
+      <ul id="list" class="list"></ul>
+    </section>
+  </main>
+
+  <div id="scrim" class="scrim" hidden></div>
+  <article id="detail" class="detail" role="dialog" aria-modal="true" aria-labelledby="detail-title" hidden tabindex="-1"></article>
+
+  <footer class="wrap foot">
+    <p>Ideas live as issues in <a id="repo-link" href="#">the GitHub repository</a>. Updated <span id="updated"></span>.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,242 @@
+{
+ "generatedAt": "2026-10-15T03:28:14.846Z",
+ "repo": "OWNER/REPO",
+ "siteTitle": "",
+ "owner": "OWNER",
+ "name": "REPO",
+ "meta": {
+  "areas": {
+   "interp": "Mechanistic interpretability",
+   "evals": "Evals & capability measurement",
+   "control": "AI control & monitoring",
+   "model-organisms": "Model organisms of misalignment",
+   "oversight": "Scalable oversight",
+   "training": "Alignment training & RL",
+   "psychology": "Model psychology, personas & welfare",
+   "robustness": "Robustness & adversarial attacks",
+   "governance": "Technical governance & compute",
+   "other": "Other"
+  },
+  "sizes": {
+   "weekend": "A weekend",
+   "month": "About a month",
+   "quarter": "About 3 months",
+   "large": "Bigger than that"
+  },
+  "sizeOrder": [
+   "weekend",
+   "month",
+   "quarter",
+   "large"
+  ],
+  "mentorship": {
+   "mentor": "Mentor available",
+   "async": "Async feedback",
+   "none": "No mentorship"
+  },
+  "claimRules": {
+   "renewAfterDays": 30,
+   "graceDays": 7,
+   "maxClaimants": 10
+  }
+ },
+ "ideas": [
+  {
+   "number": 100,
+   "title": "Do refusal directions transfer across model sizes in the same family?",
+   "url": "https://github.com/OWNER/REPO/issues/100",
+   "author": "example-interp",
+   "avatar": "",
+   "createdAt": "2026-10-12T15:00:00.000Z",
+   "updatedAt": "2026-10-13T15:00:00.000Z",
+   "summary": "Find the refusal direction in a small and a large model from one family and test whether a learned map between them preserves it.",
+   "description": "Refusal is often mediated by a single direction in the residual stream. If the direction found in a small model can be mapped onto a larger sibling, cheap experiments on small models could tell us something about the large ones.\n\nA good result is a clear yes or no with an honest account of where the mapping breaks down.",
+   "firstSteps": "1. Reproduce the difference-of-means refusal direction on two open-weight models of different sizes.\n2. Fit a linear map between their residual streams on a neutral corpus.\n3. Ablate the mapped direction in the large model and measure refusal rate.",
+   "prerequisites": "PyTorch, TransformerLens or nnsight",
+   "links": "",
+   "area": "interp",
+   "size": "month",
+   "mentorship": "mentor",
+   "claimMode": "open",
+   "claims": [
+    {
+     "user": "example-newcomer",
+     "mode": "collab",
+     "since": "2026-10-13T15:00:00.000Z",
+     "renewedAt": "2026-10-13T15:00:00.000Z",
+     "note": ""
+    }
+   ],
+   "results": []
+  },
+  {
+   "number": 101,
+   "title": "A cheap eval for sandbagging on multiple-choice benchmarks",
+   "url": "https://github.com/OWNER/REPO/issues/101",
+   "author": "example-evals",
+   "avatar": "",
+   "createdAt": "2026-10-09T15:00:00.000Z",
+   "updatedAt": "2026-10-09T15:00:00.000Z",
+   "summary": "Detect deliberate underperformance by comparing accuracy under prompts that make the model believe it is or isn't being evaluated.",
+   "description": "Prompt a model to sandbag, then check whether simple signals (answer distribution, confidence on easy items, consistency across paraphrases) flag it without access to weights.",
+   "firstSteps": "",
+   "prerequisites": "Python, API access to a couple of models",
+   "links": "",
+   "area": "evals",
+   "size": "weekend",
+   "mentorship": "async",
+   "claimMode": "open",
+   "claims": [],
+   "results": []
+  },
+  {
+   "number": 102,
+   "title": "Trusted monitoring with a weaker model: how much does chain-of-thought access help?",
+   "url": "https://github.com/OWNER/REPO/issues/102",
+   "author": "example-control",
+   "avatar": "",
+   "createdAt": "2026-10-05T15:00:00.000Z",
+   "updatedAt": "2026-10-08T15:00:00.000Z",
+   "summary": "Measure how much a weaker monitor's catch rate improves when it can read the untrusted model's reasoning, not just its actions.",
+   "description": "Set up a toy control environment with an attack policy that inserts subtle backdoors into code. Compare monitor performance with and without access to the reasoning trace, and with traces that the attack policy knows will be read.",
+   "firstSteps": "",
+   "prerequisites": "",
+   "links": "",
+   "area": "control",
+   "size": "quarter",
+   "mentorship": "mentor",
+   "claimMode": "exclusive",
+   "claims": [
+    {
+     "user": "example-fellow",
+     "mode": "solo",
+     "since": "2026-09-20T15:00:00.000Z",
+     "renewedAt": "2026-10-08T15:00:00.000Z",
+     "note": "Baseline monitor working; now adding the CoT condition"
+    }
+   ],
+   "results": []
+  },
+  {
+   "number": 103,
+   "title": "Does persona prompting change reward-hacking rates in coding environments?",
+   "url": "https://github.com/OWNER/REPO/issues/103",
+   "author": "example-psych",
+   "avatar": "",
+   "createdAt": "2026-09-28T15:00:00.000Z",
+   "updatedAt": "2026-09-28T15:00:00.000Z",
+   "summary": "Test whether system prompts that describe the assistant's character shift how often it special-cases tests.",
+   "description": "Take a coding benchmark where reward hacking is measurable (e.g. tests that can be special-cased). Vary only the persona description and compare hacking rates across several models.",
+   "firstSteps": "",
+   "prerequisites": "None beyond basic Python",
+   "links": "",
+   "area": "psychology",
+   "size": "weekend",
+   "mentorship": "none",
+   "claimMode": "open",
+   "claims": [],
+   "results": []
+  },
+  {
+   "number": 104,
+   "title": "Sparse autoencoder features that predict jailbreak success",
+   "url": "https://github.com/OWNER/REPO/issues/104",
+   "author": "example-interp",
+   "avatar": "",
+   "createdAt": "2026-09-21T15:00:00.000Z",
+   "updatedAt": "2026-10-02T15:00:00.000Z",
+   "summary": "Find SAE features whose activation on the prompt predicts whether a jailbreak will work, before generation.",
+   "description": "Collect a set of jailbreak attempts with known outcomes, run them through a model with a public SAE, and train a sparse probe over features. Inspect the top features by hand.",
+   "firstSteps": "",
+   "prerequisites": "Familiarity with SAEs",
+   "links": "",
+   "area": "robustness",
+   "size": "month",
+   "mentorship": "async",
+   "claimMode": "open",
+   "claims": [
+    {
+     "user": "example-student",
+     "mode": "collab",
+     "since": "2026-09-25T15:00:00.000Z",
+     "renewedAt": "2026-10-10T15:00:00.000Z",
+     "note": "Dataset of 2k attempts collected"
+    },
+    {
+     "user": "example-engineer",
+     "mode": "collab",
+     "since": "2026-10-02T15:00:00.000Z",
+     "renewedAt": "2026-10-02T15:00:00.000Z",
+     "note": ""
+    }
+   ],
+   "results": []
+  },
+  {
+   "number": 105,
+   "title": "Replicate emergent misalignment from narrow finetuning on a small open model",
+   "url": "https://github.com/OWNER/REPO/issues/105",
+   "author": "example-organisms",
+   "avatar": "",
+   "createdAt": "2026-09-14T15:00:00.000Z",
+   "updatedAt": "2026-09-14T15:00:00.000Z",
+   "summary": "Check whether finetuning on insecure code produces broadly misaligned answers in a 1–3B parameter model.",
+   "description": "Earlier work found narrow finetuning can cause broad misalignment in large models. Does the effect appear at small scale, where it would be much cheaper to study?",
+   "firstSteps": "",
+   "prerequisites": "",
+   "links": "",
+   "area": "model-organisms",
+   "size": "month",
+   "mentorship": "mentor",
+   "claimMode": "open",
+   "claims": [],
+   "results": [
+    {
+     "user": "example-replicator",
+     "link": "https://example.com/writeup",
+     "at": "2026-10-01T15:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "number": 106,
+   "title": "How well do debate transcripts help non-experts judge physics questions?",
+   "url": "https://github.com/OWNER/REPO/issues/106",
+   "author": "example-oversight",
+   "avatar": "",
+   "createdAt": "2026-09-02T15:00:00.000Z",
+   "updatedAt": "2026-09-02T15:00:00.000Z",
+   "summary": "Run a small human study where non-physicists judge graduate-level physics questions with and without model debates.",
+   "description": "Most debate studies use reading comprehension. Physics questions with verifiable answers are a harder, more realistic test of whether debate helps weaker judges.",
+   "firstSteps": "",
+   "prerequisites": "",
+   "links": "",
+   "area": "oversight",
+   "size": "large",
+   "mentorship": "async",
+   "claimMode": "open",
+   "claims": [],
+   "results": []
+  },
+  {
+   "number": 107,
+   "title": "Estimating training compute from public model behavior",
+   "url": "https://github.com/OWNER/REPO/issues/107",
+   "author": "example-gov",
+   "avatar": "",
+   "createdAt": "2026-08-25T15:00:00.000Z",
+   "updatedAt": "2026-08-25T15:00:00.000Z",
+   "summary": "Build a regression from cheap behavioral probes to known training compute, as a tool for verifying compute disclosures.",
+   "description": "For open models with known compute, measure a battery of capability and calibration probes. See how accurately compute can be predicted for held-out models.",
+   "firstSteps": "",
+   "prerequisites": "",
+   "links": "",
+   "area": "governance",
+   "size": "quarter",
+   "mentorship": "none",
+   "claimMode": "open",
+   "claims": [],
+   "results": []
+  }
+ ]
+}

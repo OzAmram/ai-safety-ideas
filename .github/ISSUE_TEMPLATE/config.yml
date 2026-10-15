@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Browse all ideas
+    url: https://OWNER.github.io/REPO/
+    about: Search and filter ideas on the site.

@@ -1,0 +1,3 @@
+# GitHub usernames whose ideas are approved automatically, one per line.
+# Repo owners, members and collaborators are always trusted.
+# Everyone else's ideas get the "needs-review" label until a maintainer adds "approved".

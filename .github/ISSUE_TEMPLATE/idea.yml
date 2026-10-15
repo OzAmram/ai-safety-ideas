@@ -1,0 +1,104 @@
+name: Post a research idea
+description: Share an AI safety research idea that others can pick up.
+title: "[Idea] "
+labels: ["idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing an idea. Write it so that a capable newcomer could start on it without talking to you first.
+        Ideas from first-time posters are reviewed by a maintainer before they appear on the site.
+
+  - type: input
+    id: summary
+    attributes:
+      label: One-line summary
+      description: Shown on the idea card. Aim for under ~140 characters.
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: The idea
+      description: What's the question, why does it matter for safety, and what would a good result look like? Markdown works.
+    validations:
+      required: true
+
+  - type: textarea
+    id: first-steps
+    attributes:
+      label: Suggested first steps
+      description: A concrete starting point, e.g. which model, dataset or codebase to begin with.
+    validations:
+      required: false
+
+  - type: input
+    id: prerequisites
+    attributes:
+      label: Useful background
+      description: e.g. "PyTorch, familiarity with SAEs", "none beyond basic ML".
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Mechanistic interpretability
+        - Evals & capability measurement
+        - AI control & monitoring
+        - Model organisms of misalignment
+        - Scalable oversight
+        - Alignment training & RL
+        - Model psychology, personas & welfare
+        - Robustness & adversarial attacks
+        - Technical governance & compute
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: size
+    attributes:
+      label: Rough size
+      description: For someone with the listed background, working part-time.
+      options:
+        - A weekend
+        - About a month
+        - About 3 months
+        - Bigger than that
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mentorship
+    attributes:
+      label: Mentorship
+      options:
+        - I'd mentor someone on this
+        - "I can give async feedback (e.g. review a draft)"
+        - No bandwidth, but take it and run
+    validations:
+      required: true
+
+  - type: dropdown
+    id: claim-mode
+    attributes:
+      label: Claiming
+      description: Open is usually better; parallel attempts are common and useful in research.
+      options:
+        - "Open: several people can work on it at once"
+        - "Exclusive: one claim at a time"
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: links
+    attributes:
+      label: Related work / links
+      description: Papers, posts or repos worth reading first.
+    validations:
+      required: false

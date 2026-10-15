@@ -1,0 +1,49 @@
+name: Site
+
+# Rebuilds the browsable page from the issues and deploys it to GitHub Pages.
+# Changes made by the other workflows' bot account don't trigger workflows
+# directly, so this also runs after each of them finishes.
+on:
+  workflow_run:
+    workflows: [Claims, Triage, Stale claims]
+    types: [completed]
+  issues:
+    types: [edited, closed, reopened, unlabeled, deleted]
+  push:
+    branches: [main]
+    paths: ["site/**", "scripts/**", ".github/workflows/site.yml"]
+  schedule:
+    - cron: "41 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/build-data.mjs site/ideas.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SITE_TITLE: ${{ vars.SITE_TITLE }}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4
