@@ -29,7 +29,7 @@ The claimant is assigned to the issue, and a single comment at the top of the th
 1. Create a **public** GitHub repository and push these files to its `main` branch.
 2. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
 3. **Actions tab → "Set up labels" → Run workflow.** This creates the labels with colors and descriptions.
-4. In `.github/ISSUE_TEMPLATE/config.yml`, replace `OWNER/REPO` with your GitHub username and repository name (this is the "Browse all ideas" link on the new-issue page).
+4. (Done for OzAmram/ai-safety-ideas.) If you rename or move the repo, update the "Browse all ideas" link in `.github/ISSUE_TEMPLATE/config.yml`.
 5. Add any researchers whose ideas should skip review to `.github/trusted-posters.txt`.
 6. Optional: set a repository variable `SITE_TITLE` (Settings → Secrets and variables → Actions → Variables) to change the site's heading.
 7. Post your first idea. The site appears at `https://OWNER.github.io/REPO/` once the "Site" workflow finishes (about a minute).
