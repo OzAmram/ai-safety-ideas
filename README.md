@@ -32,7 +32,7 @@ The claimant is assigned to the issue, and a single comment at the top of the th
 4. (Done for OzAmram/ai-safety-ideas.) If you rename or move the repo, update the "Browse all ideas" link in `.github/ISSUE_TEMPLATE/config.yml`.
 5. Add any researchers whose ideas should skip review to `.github/trusted-posters.txt`.
 6. Optional: set a repository variable `SITE_TITLE` (Settings → Secrets and variables → Actions → Variables) to change the site's heading.
-7. Post your first idea. The site appears at `https://OWNER.github.io/REPO/` once the "Site" workflow finishes (about a minute).
+7. Post your first idea. The site appears at `https://ozamram.github.io/ai-safety-ideas/` once the "Site" workflow finishes (about a minute).
 
 If a workflow fails with a permissions error, check **Settings → Actions → General → Workflow permissions** and allow read and write.
 
@@ -40,7 +40,8 @@ If a workflow fails with a permissions error, check **Settings → Actions → G
 
 - Approve an idea: add the `approved` label.
 - Hide an idea: remove `approved`, or close the issue. Closed ideas drop off the site.
-- Edit an idea: edit the issue body. Labels and the site update automatically.
+- Edit an idea: edit the issue body. Labels and the site update automatically. Area, size and mentorship labels always follow the form fields, so change those by editing the issue, not the labels.
+- Fix a stuck idea (missing labels or claims box): **Actions → Triage → Run workflow** re-checks every open idea.
 - Override claims: maintainers can unassign people directly; the bot's claims comment is the source of truth for the site, so also edit or delete that comment if needed.
 
 ## Development

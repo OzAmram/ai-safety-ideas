@@ -41,6 +41,10 @@ before(async () => {
       const list = [...db.issues.values()].filter((i) => i.state === "open" && want.every((w) => i.labels.some((l) => l.name === w)));
       return send(200, page === 1 ? list.map(view) : []);
     }
+    if (req.method === "GET" && (m = p.match(/^\/issues\/(\d+)$/))) {
+      const i = db.issues.get(Number(m[1]));
+      return i ? send(200, view(i)) : send(404, {});
+    }
     if ((m = p.match(/^\/issues\/(\d+)\/comments$/))) {
       const i = db.issues.get(Number(m[1]));
       if (req.method === "GET") return send(200, Number(url.searchParams.get("page") || 1) === 1 ? i.comments : []);
@@ -175,4 +179,24 @@ test("stale check reminds, then releases", async () => {
   assert.match(out, /0 reminders sent, 1 claims released/);
   assert.deepEqual(i.assignees, []);
   assert.ok(labelsOf(1).includes("status:available") && !labelsOf(1).includes("status:claimed"));
+});
+
+test("regression: issue created with extra labels, only a 'labeled' run survives", async () => {
+  // GitHub fires opened + one labeled event per label; concurrency cancels all
+  // but the last queued run, which may be a "labeled" event.
+  newIssue(3, "oz", BODY.replace("AI control & monitoring", "Mechanistic interpretability"), ["idea", "area:interp", "area:model-organisms"], "OWNER");
+  await script("triage.mjs", issueEvent(3, "labeled", { label: { name: "area:model-organisms" } }));
+  assert.deepEqual(labelsOf(3), ["approved", "area:interp", "idea", "mentorship:mentor", "size:weekend", "status:available"]);
+  assert.equal(db.issues.get(3).comments.length, 1);
+  // A second run is a no-op (idempotent).
+  await script("triage.mjs", issueEvent(3, "opened"));
+  assert.equal(db.issues.get(3).comments.length, 1);
+});
+
+test("regression: untrusted poster only gets one review comment across runs", async () => {
+  newIssue(4, "stranger2", BODY, ["idea"]);
+  await script("triage.mjs", issueEvent(4, "labeled", { label: { name: "idea" } }));
+  await script("triage.mjs", issueEvent(4, "opened"));
+  assert.ok(labelsOf(4).includes("needs-review"));
+  assert.equal(db.issues.get(4).comments.length, 1);
 });

@@ -3,17 +3,18 @@ name: Triage
 on:
   issues:
     types: [opened, edited, labeled]
+  workflow_dispatch: # re-check all open ideas
 
 permissions:
   issues: write
 
 concurrency:
-  group: claims-${{ github.event.issue.number }}
+  group: claims-${{ github.event.issue.number || 'all' }}
   cancel-in-progress: false
 
 jobs:
   triage:
-    if: contains(github.event.issue.labels.*.name, 'idea')
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.labels.*.name, 'idea')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
